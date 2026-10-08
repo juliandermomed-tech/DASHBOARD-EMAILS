@@ -187,7 +187,6 @@ header>div{min-width:0;max-width:100%}
     <div>
       <div class="eyebrow">Loja virtual · dermomed.com.br</div>
       <h1 id="h1"></h1>
-      <p id="asof" style="margin:0;font-size:12px;color:var(--muted)">Dados de e-mails atualizados em 08/10/2026</p>
       <p class="sub" id="period"></p>
     </div>
     <div class="filters">
@@ -436,7 +435,7 @@ async function refreshNow(key){
     try{return applyResult(key,await call());}catch(e2){return onError(key,e2);}}
     onError(key,e);}
 }
-function renderSync(){{const e=document.getElementById("sync");if(e)e.hidden=true;return;}
+function renderSync(){return renderSyncGH();
   const el=document.getElementById("sync");if(!el)return;
   const key=SETS[tab]&&SETS[tab].live; el.hidden=!key; if(!key)return;
   const S_=SRC[key],sy=S_.sync;
@@ -712,18 +711,31 @@ boot();
 /* ===== Atualização automática pela planilha publicada =====
    Cole entre as aspas o link CSV gerado no Google Sheets em
    Arquivo → Compartilhar → Publicar na Web → (primeira aba) → Valores separados por vírgula (.csv) */
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRel68IOW9tRcLlTzcWmR9NOTKdmGvlQ3Rz_VTv_DmKGAlyUePrCadE1UqDhJ9kcReeb1pYFO6olWJ5/pub?gid=614206903&single=true&output=csv";
+var CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRel68IOW9tRcLlTzcWmR9NOTKdmGvlQ3Rz_VTv_DmKGAlyUePrCadE1UqDhJ9kcReeb1pYFO6olWJ5/pub?gid=614206903&single=true&output=csv";
+var GH=GH||{busy:false,at:null,err:""};
+function renderSyncGH(){
+  GH=GH||{busy:false,at:null,err:""};
+  const el=document.getElementById("sync");if(!el)return;
+  const show=tab==="emails"||tab==="all";el.hidden=!show;if(!show)return;
+  const S_=SRC.emails;
+  const st=GH.busy?`<span class="pill p-wait">Lendo a planilha…</span>`:GH.at?`<span class="pill p-ok">Atualizado · lida em ${whenStr(GH.at)}</span>`:`<span class="pill p-ret">Dados de 08/10/2026</span>`;
+  const txt=!CSV_URL?"Atualização automática ainda não configurada: falta colar o link da planilha publicada no arquivo.":GH.at?"Atualiza sozinha a cada 5 minutos enquanto a página estiver aberta.":"Lendo os pedidos direto da planilha.";
+  el.innerHTML=`<div class="syncrow">${st}<span class="synctxt">${txt}</span>
+    <button id="btnSync" ${GH.busy||!CSV_URL?"disabled":""}>Atualizar agora</button><a href="https://docs.google.com/spreadsheets/d/${S_.sheet}/edit?gid=${S_.gid}" target="_blank" rel="noopener">Abrir planilha</a></div>${GH.err?`<p class="syncerr">${esc(GH.err)}</p>`:""}`;
+  document.getElementById("btnSync").addEventListener("click",loadCSV);
+}
 async function loadCSV(){
-  const el=document.getElementById("asof");
-  if(!CSV_URL)return;
+  if(!CSV_URL||GH.busy)return;
+  GH.busy=true;GH.err="";renderSyncGH();
   try{
     const r=await fetch(CSV_URL+(CSV_URL.includes("?")?"&":"?")+"t="+Date.now(),{cache:"no-store"});
     if(!r.ok)throw new Error(r.status);
-    applyResult("emails",{payload:await r.text()});
-    el.textContent="Planilha lida em "+whenStr(Date.now())+" · atualiza sozinha a cada 5 minutos";
-  }catch(e){el.textContent="Não consegui ler a planilha agora · mostrando os dados de 08/10/2026";}
+    const t=await r.text();GH.busy=false;GH.at=Date.now();
+    applyResult("emails",{payload:t});
+  }catch(e){GH.busy=false;GH.err="Não consegui ler a planilha agora. Mostrando a última versão carregada. "+(e&&e.message?"("+e.message+")":"");}
+  renderSyncGH();
 }
-loadCSV();setInterval(loadCSV,300000);
+renderSyncGH();loadCSV();setInterval(loadCSV,300000);
 startDownloads();
 </script>
 

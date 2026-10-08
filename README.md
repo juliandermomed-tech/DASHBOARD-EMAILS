@@ -6,10 +6,10 @@
 ## Atualização automática (aba de e-mails)
 1. Na planilha "Controle E-mails Loja Integrada — Pedidos": Arquivo → Compartilhar → Publicar na Web.
 2. Escolha a PRIMEIRA aba e o formato "Valores separados por vírgula (.csv)" → Publicar → copie o link.
-3. Nos dois arquivos HTML, procure a linha `const CSV_URL = "";` e cole o link entre as aspas.
+3. O link já está configurado nos dois arquivos (linha `var CSV_URL = ...`). Se publicar outra planilha, troque o link nessa linha.
 4. Envie os arquivos para o GitHub.
 
-A página lê a planilha ao abrir e de novo a cada 5 minutos. Se não conseguir, mostra os dados de 08/10/2026 guardados no arquivo.
+A página lê a planilha ao abrir, a cada 5 minutos e quando alguém clica em "Atualizar agora". O botão "Abrir planilha" leva à planilha no Google Sheets. Se não conseguir, mostra os dados de 08/10/2026 guardados no arquivo.
 Os pedidos novos precisam continuar na primeira aba da planilha.
 
 ## Publicar no GitHub Pages
