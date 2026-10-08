@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DADOS COMPARATIVOS EMAIL/CUPONS</title>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f5f7f7; --surface:#ffffff; --line:#e1e6e6; --grid:#edf1f1;
+  --ink:#0f1a1c; --ink2:#4b5a5d; --muted:#7c8a8c;
+  --accent:#0e7c86; --accent-soft:#e2f2f3;
+  --s1:#2a78d6; --good:#1f8a4c; --good-soft:#e3f3ea; --bad:#d03b3b; --bad-soft:#fbe7e6; --warn:#b77900; --warn-soft:#fbf0d9;
+  --ret:#7a5cc2; --ret-soft:#efe9fa;
+  --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0f1416; --surface:#171e20; --line:#263033; --grid:#1f282a;
+  --ink:#eef3f3; --ink2:#b3c0c2; --muted:#83918f;
+  --accent:#3fb6bf; --accent-soft:#16373a;
+  --s1:#3987e5; --good:#3fbf74; --good-soft:#153524; --bad:#ec6a69; --bad-soft:#3d1c1c; --warn:#e0a53a; --warn-soft:#3a2d12;
+  --ret:#a48ef0; --ret-soft:#2a2342;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0f1416; --surface:#171e20; --line:#263033; --grid:#1f282a;
+  --ink:#eef3f3; --ink2:#b3c0c2; --muted:#83918f;
+  --accent:#3fb6bf; --accent-soft:#16373a;
+  --s1:#3987e5; --good:#3fbf74; --good-soft:#153524; --bad:#ec6a69; --bad-soft:#3d1c1c; --warn:#e0a53a; --warn-soft:#3a2d12;
+  --ret:#a48ef0; --ret-soft:#2a2342;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;padding-inline:16px;padding-block:24px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:20px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+.eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:26px;margin:4px 0 2px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--ink2);margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:3px}
+.seg button{font:inherit;font-size:13px;border:0;background:none;color:var(--ink2);padding:6px 10px;border-radius:6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--ink);font-weight:600}
+.seg button:focus-visible,select:focus-visible,th button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+select{font:inherit;font-size:13px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.kpi .lab{font-size:12px;color:var(--ink2);font-weight:500}
+.kpi .val{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.kpi .note{font-size:12px;color:var(--muted)}
+.kpi.hero{background:var(--accent-soft);border-color:transparent}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.card h2{font-size:15px;margin:0 0 2px;font-weight:600}
+.card .hint{font-size:12px;color:var(--muted);margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink2);margin-bottom:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+svg text{fill:var(--muted);font-family:var(--mono);font-size:10.5px}
+.alert{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.alert h2{margin:0;font-size:15px}
+.alert p{margin:0;color:var(--ink2);max-width:80ch}
+.retry{display:grid;gap:6px}
+.retry div{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;font-size:13px}
+.retry b{font-weight:600;min-width:220px}
+.retry span{color:var(--ink2);font-variant-numeric:tabular-nums}
+.hbar{display:grid;gap:10px}
+.hrow{display:grid;grid-template-columns:minmax(110px,170px) 1fr auto;gap:10px;align-items:center;font-size:13px}
+.hrow .nm{color:var(--ink);overflow-wrap:anywhere}
+.track{height:14px;background:var(--grid);border-radius:4px;display:flex;overflow:hidden;gap:2px}
+.track span{height:100%;display:block}
+.hrow .v{font-family:var(--mono);font-size:12px;color:var(--ink2);text-align:right;white-space:nowrap}
+.tblwrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
+th{text-align:left;font-weight:600;color:var(--ink2);font-size:12px;border-bottom:1px solid var(--line);padding:8px 10px}
+th button{all:unset;cursor:pointer}
+td{padding:8px 10px;border-bottom:1px solid var(--grid);vertical-align:top}
+td.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.mono{white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+td.utm{font-family:var(--mono);font-size:11.5px;color:var(--ink2);overflow-wrap:anywhere;max-width:260px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.p-ok{background:var(--good-soft);color:var(--good)} .p-bad{background:var(--bad-soft);color:var(--bad)}
+.p-wait{background:var(--warn-soft);color:var(--warn)} .p-ret{background:var(--ret-soft);color:var(--ret)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:7px 9px;border-radius:6px;line-height:1.4;z-index:9;max-width:240px}
+#tip b{font-weight:600}
+.isrep td{opacity:.55}.repnote{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap}
+.foot{font-size:12px;color:var(--muted)}
+@media (max-width:520px){h1{font-size:22px}.hrow{grid-template-columns:100px 1fr auto}.retry b{min-width:0}}
+</style>
+<style>
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{font:inherit;font-size:14px;font-weight:600;color:var(--ink2);background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;cursor:pointer;white-space:nowrap;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabs button small{font-weight:500;color:var(--muted);margin-left:6px;font-family:var(--mono);font-size:11px}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.cupom{font-family:var(--mono);font-size:11.5px;color:var(--ink2)}
+.src{font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.src-c{background:var(--accent-soft);color:var(--accent)} .src-e{background:var(--ret-soft);color:var(--ret)} .src-r{background:var(--warn-soft);color:var(--warn)}
+.sync{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:grid;gap:6px}
+.syncrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.synctxt{font-size:12.5px;color:var(--ink2);flex:1;min-width:200px}
+.syncrow button{font:inherit;font-size:13px;font-weight:600;background:var(--accent);color:var(--surface);border:0;border-radius:8px;padding:7px 14px;cursor:pointer}
+.syncrow button[disabled]{opacity:.55;cursor:default}
+.syncrow button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.syncrow a{font-size:13px;color:var(--accent)}
+.syncerr{margin:0;font-size:12.5px;color:var(--bad)}
+.tblhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:10px 16px}
+.months{display:flex;flex-wrap:wrap;gap:6px}
+.months-top{margin-bottom:-6px}
+[hidden]{display:none!important}
+.wrap>*{min-width:0}
+@media (max-width:520px){.kpi .val{font-size:clamp(16px,5vw,20px)}.kpi{padding:12px}}
+.alert,.retry{grid-template-columns:minmax(0,1fr)}
+.retry .pill{white-space:normal}
+.filters{max-width:100%}
+.filters select{max-width:100%;min-width:0}
+header>div{min-width:0;max-width:100%}
+.months button{font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+.months button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink);font-weight:600}
+.months button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.months button small{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-left:5px}
+.monthsum{margin:4px 0 10px;font-size:13px;color:var(--ink2)}
+.monthsum b{color:var(--ink);font-variant-numeric:tabular-nums}
+.alert details{display:grid;gap:10px}
+.alert summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 14px}
+.alert summary::-webkit-details-marker{display:none}
+.alert summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+.alert .tog{font-size:12.5px;font-weight:600;color:var(--accent);white-space:nowrap}
+.alert .tog::after{content:"Mostrar clientes ▾"}
+.alert details[open] .tog::after{content:"Esconder ▴"}
+.alert details>p,.alert details>.retry{margin-top:10px}
+.tblctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.sitlab{font-size:12.5px;color:var(--ink2);font-weight:500}
+.flownote{margin:-8px 0 0;font-size:12.5px;color:var(--ink2);background:var(--surface);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;max-width:100%}
+.flownote b{color:var(--ink);font-weight:600}
+.flowcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
+.fcard[disabled]{cursor:default;opacity:1}
+.fcard{font:inherit;text-align:left;cursor:pointer;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:3px}
+.fcard:hover{border-color:var(--accent)}
+.fcard[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.fcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fname{font-size:12.5px;font-weight:600;color:var(--ink2)}
+.fval{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.fnote{font-size:11.5px;color:var(--muted)}
+.dl{display:inline-block;font-size:11.5px;font-weight:600;margin-left:6px;padding:1px 6px;border-radius:5px;vertical-align:2px}
+.dl.good{background:var(--good-soft);color:var(--good)} .dl.bad{background:var(--bad-soft);color:var(--bad)} .dl.flat{background:var(--grid);color:var(--ink2)}
+.kpi .marg{font-size:12px;color:var(--ink2);border-top:1px solid var(--line);padding-top:6px;margin-top:4px}
+.kpi.hero .marg{border-top-color:rgba(14,124,134,.25)}
+.recins{margin:0 0 10px;font-size:13px;color:var(--ink2);max-width:90ch}
+.rectbl{min-width:640px} .rectbl th.r,.rectbl td.r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ctc{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink2);cursor:pointer;user-select:none}
+.ctc input{width:16px;height:16px;accent-color:var(--good);cursor:pointer;margin:0}
+.retry .done b,.retry .done>span:not(.ctc){opacity:.5}
+.retry .done b{text-decoration:line-through}
+.ctcwhen{font-size:11.5px;color:var(--good);font-weight:600}
+.btn-dl{font:inherit;font-size:12.5px;font-weight:600;background:var(--surface);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:5px 12px;cursor:pointer}
+.btn-dl:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dlmsg{margin:8px 0 0;font-size:12.5px;color:var(--ink2)}
+@media (max-width:640px){
+  .tblwrap table:not(.rectbl){min-width:0}
+  .tblwrap table:not(.rectbl) thead{display:none}
+  .tblwrap table:not(.rectbl) tr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .tblwrap table:not(.rectbl) td{border:0;padding:0;max-width:none}
+  .tblwrap table:not(.rectbl) td[data-l]::before{content:attr(data-l)": ";color:var(--muted);font-size:11px;font-family:var(--sans)}
+  .tblwrap table:not(.rectbl) td.c-cli{grid-column:1;grid-row:1;font-weight:600}
+  .tblwrap table:not(.rectbl) td.c-v{grid-column:2;grid-row:1;text-align:right}
+  .tblwrap table:not(.rectbl) td.c-st{grid-column:1/-1}
+  .tblwrap table:not(.rectbl) td:not(.c-cli):not(.c-v):not(.c-st){grid-column:1/-1;font-size:12px;color:var(--ink2)}
+  .tblwrap table:not(.rectbl) td.c-cli::before,.tblwrap table:not(.rectbl) td.c-v::before,.tblwrap table:not(.rectbl) td.c-st::before{content:none}
+}
+.pedtop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.pedtop .hint{margin-bottom:10px}
+.pedtog{font:inherit;font-size:12.5px;font-weight:600;color:var(--accent);background:none;border:0;cursor:pointer;padding:2px 0;white-space:nowrap}
+.pedtog:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+#pedCard.min .pedtop .hint{margin-bottom:0}
+.tblhead{justify-content:flex-end}
+.card.wide{grid-column:1/-1}
+.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi .val{overflow-wrap:anywhere}
+.retry .grp{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-top:6px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Loja virtual · dermomed.com.br</div>
+      <h1 id="h1"></h1>
+      <p id="asof" style="margin:0;font-size:12px;color:var(--muted)">Dados de e-mails atualizados em 08/10/2026</p>
+      <p class="sub" id="period"></p>
+    </div>
+    <div class="filters">
+      <div class="seg" role="group" aria-label="Situação">
+        <button id="f-all" aria-pressed="true" data-f="all">Todos</button>
+        <button id="f-ok" aria-pressed="false" data-f="ok">Aprovados</button>
+        <button id="f-bad" aria-pressed="false" data-f="bad">Cancelados</button>
+      </div>
+      <select id="f-grp" aria-label="Origem"></select>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <section class="sync" id="sync" hidden></section>
+
+  <div class="months months-top" role="group" aria-label="Mês" id="f-mes-top"></div>
+  <div class="flowcards" role="group" aria-label="Fluxo de e-mail" id="flowcards" hidden></div>
+  <p class="flownote" id="flownote" hidden>Os fluxos <b>Voltou ao estoque</b> e <b>Segunda chance</b> só aparecem a partir de setembro/26, quando começamos a campanha de inserir cupons nos e-mails. Antes disso, os pedidos vinham só do carrinho abandonado.</p>
+  <section class="kpis" id="kpis"></section>
+
+  <section class="alert" id="alert"></section>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>Faturamento por dia</h2>
+      <p class="hint">Valor dos pedidos por data de criação</p>
+      <div class="legend"><span><i style="background:var(--good)"></i>Aprovado</span><span><i style="background:var(--warn)"></i>Aguardando / devolvido</span><span><i style="background:var(--bad)"></i>Cancelado</span></div>
+      <div id="daily"></div>
+    </div>
+    <div class="card">
+      <h2 id="grpTitle"></h2>
+      <p class="hint" id="grpHint"></p>
+      <div class="legend"><span><i style="background:var(--good)"></i>Aprovado</span><span><i style="background:var(--warn)"></i>Aguardando / devolvido</span><span><i style="background:var(--bad)"></i>Cancelado</span></div>
+      <div class="hbar" id="origem"></div>
+    </div>
+    <div class="card" id="pagCard">
+      <h2>Aprovação por meio de pagamento</h2>
+      <p class="hint">Pedidos aprovados ÷ pedidos, sem as tentativas repetidas</p>
+      <div class="hbar" id="pagto"></div>
+    </div>
+    <div class="card" id="g2Card">
+      <h2 id="g2Title"></h2>
+      <p class="hint" id="g2Hint"></p>
+      <div class="hbar" id="frete"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Tentativas recusadas por meio de pagamento</h2>
+    <p class="hint">Todas as linhas canceladas, repetições incluídas · quem cancelou e depois comprou, e por qual meio · um cliente que tentou por dois meios aparece nos dois</p>
+    <p class="recins" id="recins"></p>
+    <div class="tblwrap"><table class="rectbl"><thead><tr><th>Meio de pagamento</th><th class="r">Linhas canceladas</th><th class="r">Clientes</th><th class="r">Compraram depois</th><th>Meio usado na compra</th><th class="r">Valor não recuperado</th></tr></thead><tbody id="recbody"></tbody></table></div>
+  </div>
+
+  <div class="card" id="pedCard">
+    <div class="pedtop">
+      <div><h2>Pedidos</h2><p class="hint" id="tblhint"></p></div>
+      <button class="pedtog" id="pedTog" aria-expanded="true" aria-controls="pedBody">Esconder ▴</button>
+    </div>
+    <div id="pedBody">
+    <div class="tblhead">
+      <div class="tblctl">
+        <label class="sitlab" for="f-sit">Situação</label>
+        <select id="f-sit"></select>
+        <div class="months" role="group" aria-label="Mês" id="f-mes"></div>
+        <button class="btn-dl" id="btnDl" hidden>Baixar CSV</button>
+      </div>
+    </div>
+    <div class="tblwrap"><table>
+      <thead><tr id="thead"></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+    <p class="dlmsg" id="dlmsg" hidden></p>
+    </div>
+  </div>
+  <p class="foot" id="foot"></p>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const CUPOM_RAW = [["57408", "Enviado", "25/09/26 19:56", "Fernanda Cessar Vieira", "FL_google_pmax_profissionais_e_negocios", "Pagali", "Frenet (Sedex)", 262.93], ["57403", "Pago", "25/09/26 15:55", "Carla Lorusso Caversan Sant Anna", "GoogleMerchant", "Pagali", "Frenet (Sedex)", 2949.9], ["57380", "Cancelado", "24/09/26 15:31", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57375", "Cancelado", "24/09/26 12:54", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57373", "Faturado", "24/09/26 12:01", "Fernanda Braga Junco", "GoogleMerchant", "Boleto Bancário", "Frenet (Mandaê Econômico)", 256.0], ["57367", "Cancelado", "24/09/26 09:56", "Fernanda Braga Junco", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 256.0], ["57363", "Cancelado", "24/09/26 00:33", "LAISE BETTTARELLO", "FL_google_shopping_akmed", "Pix", "Frenet (Mandaê Rápido)", 739.34], ["57350", "Cancelado", "23/09/26 17:20", "LAISE CARVALHO SILVA", "", "Pagali", "Frenet (Jamef)", 2184.06], ["57349", "Cancelado", "23/09/26 17:18", "LAISE CARVALHO SILVA", "", "Pagali", "Frenet (Jamef)", 2184.06], ["57348", "Cancelado", "23/09/26 17:11", "LAISE CARVALHO SILVA", "", "Pagali", "Frenet (Jamef)", 2184.06], ["57342", "Cancelado", "23/09/26 15:09", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57334", "Entregue", "23/09/26 08:20", "Thamires Ferreira Rodrigues", "FL_google_shopping_hight_ticket_htm", "Pix", "Frenet (Mandaê Econômico)", 744.75], ["57332", "Enviado", "22/09/26 23:02", "João Hipólito Ferreira Machado", "GoogleMerchant", "Pagali", "Frenet (Sedex)", 861.27], ["57326", "Enviado", "22/09/26 20:16", "Luciano Rocha Cossolosso", "FL-Google-pesquisa-imax-datas-especiais-primavera", "Pix", "Frenet (Mandaê Econômico)", 1134.89], ["57321", "Cancelado", "22/09/26 16:17", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57320", "Entregue", "22/09/26 15:45", "Ryan victor nascimento lopes", "", "Pagali", "Frenet (Mandaê Rápido)", 2549.99], ["57312", "Cancelado", "22/09/26 13:00", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57311", "Pgto devolvido - sem retorno do item", "22/09/26 11:39", "Simone Ribeiro Stein", "GoogleMerchant", "Pagali", "Motoboy", 984.98], ["57297", "Entregue", "21/09/26 21:57", "Benito Vieira Sant’Ana", "", "Pix", "Frenet (Mandaê Econômico)", 551.54], ["57295", "Cancelado", "21/09/26 21:26", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57293", "Enviado", "21/09/26 20:00", "Aline Correa de Jesus", "FL-Google-pesquisa-imax-datas-especiais-mobilidade", "Pagali", "Frenet (Rodonaves)", 3266.87], ["57285", "Entregue", "21/09/26 15:54", "Jenifer Ferreira dos Reis", "FL-Google-pesquisa-imax-datas-especiais", "Pix", "Frenet (Mandaê Econômico)", 1124.38], ["57281", "Cancelado", "21/09/26 15:25", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57280", "Cancelado", "21/09/26 15:23", "Lucas Cardoso Soares", "GoogleMerchant", "Pagali", "Frenet (Mandaê Econômico)", 827.2], ["57270", "Entregue", "21/09/26 10:56", "Marcia Maria Freitas R. Oliveira", "GoogleMerchant", "Pagali", "Motoboy", 839.49], ["57262", "Entregue", "20/09/26 21:45", "Iria Hainzenreder", "GoogleMerchant", "Appmax", "Frenet (Mandaê Econômico)", 940.58], ["57236", "Entregue", "19/09/26 15:55", "Grayce Matias", "GoogleMerchant", "Appmax", "Motoboy", 1077.15], ["57231", "Pgto devolvido", "19/09/26 12:42", "Matheus de Avila Cosso", "GoogleMerchant", "Appmax", "Frenet (Mandaê Rápido)", 2057.98], ["57227", "Entregue", "18/09/26 21:16", "Lorena Fernandes", "", "Pix", "Frenet (Mandaê Econômico)", 356.27], ["57220", "Cancelado", "18/09/26 15:42", "Lucas Cardoso Soares", "GoogleMerchant", "Appmax", "Frenet (Mandaê Econômico)", 827.2], ["57219", "Cancelado", "18/09/26 15:26", "Lucas Cardoso Soares", "GoogleMerchant", "Appmax", "Frenet (Mandaê Econômico)", 827.2], ["57200", "Entregue", "17/09/26 22:27", "Andreyna Lorranna Soares Lima", "GoogleMerchant", "Pix", "Frenet (Jamef)", 3482.78], ["57195", "Aguardando pgto", "17/09/26 19:39", "Karine Teixeira Fonseca Neves", "FL_google_pmax_ibramed", "Boleto Bancário", "Frenet (Jamef)", 7768.75], ["57194", "Cancelado", "17/09/26 19:36", "Karine Teixeira Fonseca Neves", "FL_google_pmax_ibramed", "Appmax", "Frenet (Jamef)", 8613.75], ["57193", "Cancelado", "17/09/26 19:35", "Karine Teixeira Fonseca Neves", "FL_google_pmax_ibramed", "Appmax", "Frenet (Jamef)", 8613.75], ["57192", "Cancelado", "17/09/26 19:29", "Karine Teixeira Fonseca Neves", "FL_google_pmax_ibramed", "Appmax", "Frenet (Jamef)", 8613.75], ["57186", "Entregue", "17/09/26 16:53", "Karina Santana Zulius", "FL_google_pmax_ibramed", "Appmax", "Frenet (Mandaê Econômico)", 857.29], ["57178", "Entregue", "17/09/26 14:07", "José Sandro Ferreira da Silva", "", "Appmax", "Frenet (Sedex)", 830.76], ["57149", "Entregue", "16/09/26 17:09", "Tiago de Moraes Carvalho", "", "Appmax", "Frenet (Rodonaves)", 4058.77], ["57147", "Entregue", "16/09/26 15:15", "Victoria Jacini da Silva", "FL_Google_pesquisa_Institucional", "Pix", "Frenet (Sedex)", 742.04], ["57145", "Enviado", "16/09/26 14:17", "ANDREA PAVEI SCHMOELLER", "", "Appmax", "Frenet (Pac)", 1778.98], ["57144", "Cancelado", "16/09/26 14:13", "ANDREA PAVEI SCHMOELLER", "", "Appmax", "Frenet (Pac)", 1778.98], ["57142", "Cancelado", "16/09/26 13:49", "Victoria Jacini da Silva", "GoogleMerchant", "Pix", "Frenet (Sedex)", 742.04], ["57125", "Cancelado", "15/09/26 21:47", "Patrícia Jandre Medeiros Pinheiro", "GoogleMerchant", "Pix", "Frenet (Jamef)", 1523.06], ["57124", "Cancelado", "15/09/26 21:31", "Victoria Jacini da Silva", "", "Pix", "Frenet (Sedex)", 742.04], ["57123", "Cancelado", "15/09/26 21:20", "Victoria Jacini da Silva", "", "Pix", "Frenet (Sedex)", 742.04], ["57108", "Cancelado", "15/09/26 14:05", "Maria Júllia nogueira lins ferreira", "", "Appmax", "Frenet (Sedex)", 830.76], ["57105", "Entregue", "15/09/26 13:16", "Gabriella Almeida Silva", "carrinho-abandonado-auto", "Pix", "Frenet (Jamef)", 1481.13], ["57104", "Entregue", "15/09/26 12:47", "Gilmar da Silva Pereira", "GoogleMerchant", "Appmax", "Frenet (Sedex)", 882.96], ["57081", "Entregue", "14/09/26 15:50", "Franceli DallAgnol", "GoogleMerchant", "Pix", "Frenet (Sedex)", 1134.89], ["57080", "Entregue", "14/09/26 15:48", "Lucia pólipo dos Santos", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 244.44]];
+const EMAIL_RAW = [["56453", "Entregue", "12/08/26 13:29", "CRISTIANE DA SILVA ALVES", "abandoned-order", "Pix", "Frenet (Mandaê Econômico)", 113.1, ""], ["56630", "Entregue", "23/08/26 12:01", "Adriana Vieira dos Santos Schonhuber", "carrinho-abandonado-auto", "Pix", "Frenet (Jamef)", 4040.87, ""], ["56720", "Cancelado", "27/08/26 19:42", "Jasson Helio Pereira do Nascimento Junior", "carrinho-abandonado-auto", "Appmax", "Frenet (Jamef)", 5292.59, ""], ["56721", "Cancelado", "27/08/26 19:44", "Jasson Helio Pereira do Nascimento Junior", "carrinho-abandonado-auto", "Appmax", "Frenet (Jamef)", 5292.59, ""], ["56722", "Cancelado", "27/08/26 20:05", "Jasson Helio Pereira do Nascimento Junior", "carrinho-abandonado-auto", "Appmax", "Frenet (Jamef)", 5292.59, ""], ["56849", "Cancelado", "03/09/26 21:36", "Alice de Souza Neves", "carrinho-abandonado-auto", "Appmax", "Frenet (Jamef)", 1728.43, ""], ["56850", "Entregue", "03/09/26 21:38", "Alice de Souza Neves", "carrinho-abandonado-auto", "Appmax", "Frenet (Jamef)", 1728.43, ""], ["56900", "Cancelado", "07/09/26 00:35", "Anderson jose De lima silva", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 11697.7, ""], ["56971", "Entregue", "10/09/26 14:29", "Juliano Silva Guimarães", "GoogleMerchant", "Pix", "Frenet (Pac)", 147.9, "CARRINHO"], ["56986", "Entregue", "11/09/26 08:49", "Juliano Silva Guimarães", "FL_google_pmax_ibramed", "Appmax", "Frenet (Pac)", 308.96, "CARRINHO"], ["57013", "Enviado", "11/09/26 23:17", "Odila Vitória Rocha da Costa", "carrinho-abandonado-auto", "Pix", "Frenet (Sedex)", 231.23, "CARRINHO"], ["57017", "Entregue", "12/09/26 09:59", "Izadora Fracaro", "GoogleMerchant", "Appmax", "Frenet (Mandaê Econômico)", 639.58, "CARRINHO"], ["57024", "Entregue", "12/09/26 12:47", "THAIS CRISTINA SPAJARI DE BARROS", "", "Pix", "Frenet (Mandaê Econômico)", 234.31, "SEGUNDACHANCE"], ["57079", "Entregue", "14/09/26 15:13", "Larissa de Siqueira Macedo Castanharo", "FL_google_pmax_ibramed", "Appmax", "Frenet (Pac)", 264.92, "VOLTOUESTOQUE"], ["57105", "Entregue", "15/09/26 13:16", "Gabriella Almeida Silva", "carrinho-abandonado-auto", "Pix", "Frenet (Jamef)", 1481.13, ""], ["57109", "Entregue", "15/09/26 14:52", "Gislaine Dacome", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 197.93, "CARRINHO"], ["57277", "Cancelado", "21/09/26 14:51", "Jonathan Faustino", "", "Pagali", "Frenet (Jamef)", 2877.89, "SEGUNDACHANCE"], ["57286", "Cancelado", "21/09/26 16:10", "Laura Júlia Paim", "GoogleMerchant", "Pagali", "Frenet (Rodonaves)", 3230.6, "SEGUNDACHANCE"], ["57289", "Enviado", "21/09/26 16:57", "Mayara Yanase grandini", "abandoned-order", "Pix", "Frenet (Mandaê Econômico)", 449.98, ""], ["57324", "Cancelado", "22/09/26 18:15", "Adriane Lopes Ferreira", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Rápido)", 200.9, ""], ["57325", "Enviado", "22/09/26 18:54", "Adriane Lopes Ferreira", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Rápido)", 197.3, "CARRINHO"], ["57333", "Entregue", "22/09/26 23:41", "Anselmo Yassuo Aramaki", "carrinho-abandonado-auto", "Pagali", "Motoboy", 759.79, "CARRINHO"], ["57344", "Enviado", "23/09/26 15:59", "Silene Piva Ximenez Nadaleto", "aviseme", "Pix", "Frenet (Mandaê Econômico)", 310.18, "VOLTOUESTOQUE"], ["57346", "Enviado", "23/09/26 16:53", "Tereza Janira Sousa Do Amaral", "carrinho-abandonado-auto", "Pagali", "Frenet (Mandaê Rápido)", 6888.78, ""], ["57353", "Cancelado", "23/09/26 19:18", "Cesar Augusto Klisman Pereira De Souza", "carrinho-abandonado-auto", "Pagali", "Frenet (Mandaê Rápido)", 862.35, ""], ["57354", "Enviado", "23/09/26 19:20", "Cesar Augusto Klisman Pereira De Souza", "carrinho-abandonado-auto", "Pagali", "Frenet (Mandaê Rápido)", 862.35, ""], ["57377", "Enviado", "24/09/26 14:31", "Clinica Vitesse Odontologia LTDA", "", "Pix", "Frenet (Mandaê Econômico)", 885.1, "VOLTOUESTOQUE"], ["57410", "Cancelado", "26/09/26 09:19", "Luzia Bendia bendia pereira", "FL_google_pmax_ibramed", "Pagali", "Frenet (Jamef)", 2132.14, "CARRINHO"], ["57412", "Pago", "26/09/26 09:30", "Luzia Bendia bendia pereira", "FL_google_pmax_ibramed", "Pagali", "Frenet (Jamef)", 2132.14, "CARRINHO"], ["57413", "Enviado", "26/09/26 09:40", "Emanuelly Bueno Bovo Dal Ben", "GoogleMerchant", "Pix", "Frenet (Pac)", 520.48, "CARRINHO"], ["57454", "Pago", "28/09/26 10:02", "Edivania Alves Jardim", "carrinho-abandonado-auto", "Pagali", "Frenet (Sedex)", 806.26, ""], ["57475", "Cancelado", "28/09/26 18:43", "Murilo Anselmo Acacio dos Santos", "carrinho-abandonado-auto", "Pagali", "Frenet (Sedex)", 881.5, ""], ["57607", "Pago", "05/10/26 16:40", "Cinthia braga Ribeiro", "aviseme", "Pagali", "Frenet (Sedex)", 2754.0, ""], ["57621", "Cancelado", "06/10/26 01:24", "Pedro Cintra", "GoogleMerchant", "Pagali", "Frenet (Pac)", 805.09, "SEGUNDACHANCE"], ["57616", "Cancelado", "05/10/26 21:33", "Sheyla Cristina da Silva Freitas", "", "Pagali", "Frenet (Jamef)", 2115.55, "SEGUNDACHANCE"], ["57615", "Cancelado", "05/10/26 20:51", "Anderson Matias", "carrinho-abandonado-auto", "Pagali", "Frenet (Rodonaves)", 2445.61, ""], ["57678", "Enviado", "08/10/26 00:02", "SlimCenter Tucuruvi", "GoogleMerchant", "Pix", "Frenet (Jamef)", 1495.08, "CARRINHO"]];
+/* Histórico de jan a jul/2026 (CSV enviado em 02/10) — somado aos pedidos da planilha; se um pedido estiver nos dois, vale o da planilha */
+const EMAIL_HIST = [["56025", "Entregue", "20/07/26 09:21", "Tatiane Antunes", "carrinho-abandonado-auto", "Pix", "Frenet (Sedex)", 1602.0, ""], ["55771", "Entregue", "02/07/26 20:23", "Francisco Leandro Bertoldo", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 182.73, ""], ["55262", "Enviado", "08/06/26 10:48", "matheus weege rosin", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Econômico)", 163.54, ""], ["55214", "Entregue", "05/06/26 18:13", "Carlos Eduardo da Silva", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 8098.64, ""], ["55213", "Cancelado", "05/06/26 18:11", "Carlos Eduardo da Silva", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 8098.64, ""], ["55108", "Cancelado", "01/06/26 09:56", "CLAUDIA APARECIDA BATISTA CARREIRO", "carrinho-abandonado-auto", "Appmax", "Frenet (Mandaê Rápido)", 2890.0, ""], ["55107", "Cancelado", "01/06/26 09:53", "CLAUDIA APARECIDA BATISTA CARREIRO", "carrinho-abandonado-auto", "Appmax", "Frenet (Mandaê Rápido)", 2890.0, ""], ["55073", "Entregue", "30/05/26 16:04", "Nicole Avilla", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 907.31, ""], ["55029", "Entregue", "27/05/26 19:41", "Romulo Carvalho", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 549.16, ""], ["55016", "Pgto devolvido", "26/05/26 11:00", "Luiz Carlos Peagno", "carrinho-abandonado-auto", "Pix", "Frenet (Sedex)", 408.56, ""], ["54999", "Entregue", "25/05/26 13:00", "Marineide de Souza Oliveira Alves", "carrinho-abandonado-auto", "Appmax", "Frenet (Jamef)", 1656.0, ""], ["54928", "Entregue", "20/05/26 16:56", "Letícia Lanzarin Gehm", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Econômico)", 21.41, ""], ["54870", "Entregue", "16/05/26 19:20", "Elisangela de Souza", "carrinho-abandonado-auto", "Appmax", "Frenet (Mandaê Econômico)", 837.06, ""], ["54865", "Entregue", "16/05/26 13:48", "GUILHERME CANDIOTTO", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 1880.0, ""], ["54721", "Enviado", "07/05/26 22:45", "GERMANO Hoffmann", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Econômico)", 162.35, ""], ["54687", "Entregue", "05/05/26 22:58", "Priscila Ruthyelle Casimiro Ferreira", "carrinho-abandonado-auto", "Appmax", "Frenet (Mandaê Rápido)", 935.13, ""], ["54583", "Entregue", "29/04/26 18:56", "LINO YONAMINE", "carrinho-abandonado-auto", "Boleto Bancário", "Frenet (Sedex)", 764.7, ""], ["54473", "Cancelado", "23/04/26 10:15", "Waleria Cattani Sakashita", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Econômico)", 464.87, ""], ["54437", "Entregue", "21/04/26 15:09", "DEMETRIUS MOREIRA SILVA", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Rápido)", 150.5, ""], ["54389", "Entregue", "19/04/26 09:31", "Patricia leite oliveira", "carrinho-abandonado-auto", "Pix", "Motoboy", 135.59, ""], ["54361", "Cancelado", "17/04/26 11:02", "Julio Ostrowska", "carrinho-abandonado-auto", "Boleto Bancário", "Frenet (Sedex)", 408.56, ""], ["54119", "Entregue", "06/04/26 23:13", "Taiana de souza rodrigues", "carrinho-abandonado-auto", "Appmax", "Frenet (Mandaê Econômico)", 976.24, ""], ["54025", "Entregue", "31/03/26 19:09", "Fernando Nobrega", "carrinho-abandonado-auto", "Pix", "Motoboy", 119.31, ""], ["54019", "Entregue", "31/03/26 12:02", "Elaine Braga Coronato", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 999.99, ""], ["53995", "Entregue", "30/03/26 11:19", "VANESSA ALVES LEONARDO", "carrinho-abandonado-auto", "Appmax", "Motoboy (Frete Grátis)", 541.41, ""], ["53918", "Cancelado", "25/03/26 09:59", "Glaucia Elizabete", "carrinho-abandonado-auto", "Appmax", "Motoboy (Frete Grátis)", 839.9, ""], ["53875", "Entregue", "23/03/26 12:41", "Camila Kossling Mazzini", "carrinho-abandonado-auto", "Boleto Bancário", "Frenet (Mandaê Econômico)", 570.61, ""], ["53766", "Entregue", "16/03/26 13:45", "Jucelia Teresinha Mendes Heidmann", "carrinho-abandonado-auto", "Appmax", "Frenet (Jamef)", 699.86, ""], ["53729", "Enviado", "14/03/26 10:34", "Isabel de Oliveira Fernandes", "carrinho-abandonado-auto", "Appmax", "Frenet (Mandaê Econômico)", 1266.24, ""], ["53549", "Enviado", "03/03/26 10:39", "Vanda de Oliveira", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Econômico)", 778.32, ""], ["53485", "Enviado", "26/02/26 10:58", "Jessé Silva", "carrinho-abandonado-auto", "Appmax", "Frenet (Mandaê Rápido)", 895.12, ""], ["53417", "Entregue", "19/02/26 12:32", "Julieta Bitencourt", "carrinho-abandonado-auto", "Pix", "Frenet (Jamef)", 4409.73, ""], ["53379", "Entregue", "15/02/26 20:09", "Adriana Borges de Gouveia Silva", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 673.14, ""], ["53139", "Entregue", "02/02/26 16:00", "Lais Correa Araujo", "carrinho-abandonado-auto", "Boleto Bancário", "Frenet (Sedex)", 3203.1, ""], ["53138", "Cancelado", "02/02/26 14:00", "Lais Correa Araujo", "carrinho-abandonado-auto", "Pix", "Frenet (Sedex)", 3203.1, ""], ["52918", "Cancelado", "21/01/26 18:31", "RAQUEL CRISTINA NOGUEIRA NUNES", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Econômico)", 631.74, ""], ["52879", "Entregue", "20/01/26 17:44", "CLAUDIA ARAUJO DA SILVA", "carrinho-abandonado-auto", "Appmax", "Frenet (Fedex)", 901.3, ""], ["52691", "Entregue", "13/01/26 10:49", "GERALDO FAVORITO NETO", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 18526.9, ""], ["52685", "Cancelado", "12/01/26 23:17", "GERALDO FAVORITO NETO", "carrinho-abandonado-auto", "Appmax", "Frenet (Sedex)", 18526.9, ""], ["52605", "Entregue", "10/01/26 10:15", "Renato Monteiro Kloss", "carrinho-abandonado-auto", "Pix", "Frenet (Mandaê Econômico)", 131.04, ""], ["52601", "Entregue", "10/01/26 01:27", "Pedro Paulo Rodrigues Alves Ramos", "carrinho-abandonado-auto", "Paypal External", "Frenet (Sedex)", 561.32, ""], ["52423", "Pgto devolvido", "01/01/26 12:41", "Fatima de Castro Tapajos Pereirs", "carrinho-abandonado-auto", "Paypal External", "Frenet (Sedex)", 2878.0, ""]];
+const ROLETA_RAW = [["57437", "Enviado", "27/09/26 11:10", "SANDRA LUIZA NUNES CASEIRO", "GoogleMerchant", "Pix", "Frenet (Sedex)", 532.59, "CUIDAN68S"], ["57397", "Faturado", "25/09/26 13:11", "Gislaine falcao", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 572.82, "MOVEBNSP"], ["57396", "Enviado", "25/09/26 12:56", "Luiz Carlos Trevisan", "GoogleMerchant", "Pix", "Motoboy", 388.49, "MOVEBNSP"], ["57358", "Entregue", "23/09/26 21:16", "Gisele Coriliano", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 1102.68, "VIVAD4YS"], ["57347", "Cancelado", "23/09/26 17:07", "Luiz Lisboa", "", "Pagali", "Motoboy", 554.99, "VIVAD4YS"], ["57345", "Enviado", "23/09/26 16:26", "ANA KARLA DA COSTA PEREIRA", "", "Pagali", "Frenet (Jamef)", 1430.45, "DERMODJ4V"], ["57261", "Cancelado", "20/09/26 20:30", "Luiz Lisboa", "", "Appmax", "Motoboy", 564.99, "VIVAD4YS"], ["57260", "Cancelado", "20/09/26 20:29", "Luiz Lisboa", "", "Appmax", "Motoboy", 564.99, "VIVAD4YS"], ["57246", "Entregue", "20/09/26 10:29", "vitoria vieira cruz", "GoogleMerchant", "Appmax", "Frenet (Mandaê Rápido)", 600.94, "CUIDAN68S"], ["57228", "Entregue", "19/09/26 11:08", "Eliane Bueno", "FL_Google_pesquisa_Institucional", "Pix", "Frenet (Mandaê Econômico)", 794.59, "VIVAD4YS"], ["57071", "Entregue", "14/09/26 11:09", "Jeferson Mourão Paixão", "", "Appmax", "Frenet (Rodonaves)", 4176.04, "VIVAD4YS"], ["57025", "Entregue", "12/09/26 13:40", "Anna Maria Octaviano", "GoogleMerchant", "Pix", "Frenet (Jamef)", 1808.38, "DERMODJ4V"], ["56999", "Entregue", "11/09/26 17:39", "Gabriel Mendonça", "GoogleMerchant", "Appmax", "Frenet (Mandaê Econômico)", 593.85, "VIVAD4YS"], ["56995", "Entregue", "11/09/26 14:28", "Tauana Mara Silva da Conceição", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 794.59, "VIVAD4YS"], ["56994", "Cancelado", "11/09/26 13:40", "Tauana Mara Silva da Conceição", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 794.59, "VIVAD4YS"], ["56979", "Entregue", "10/09/26 21:07", "DARIO GABRIEL TERRA LASSO", "GoogleMerchant", "Appmax", "Frenet (Sedex)", 697.0, "CUIDAN68S"], ["56977", "Entregue", "10/09/26 17:59", "Marisa Simões", "FL_Google_pesquisa_Institucional", "Appmax", "Frenet (Mandaê Econômico)", 2191.91, "DERMODJ4V"], ["56901", "Entregue", "07/09/26 09:18", "Adriana pesce Salles Arcuri", "GoogleMerchant", "Pix", "Motoboy", 388.49, "MOVEBNSP"], ["56811", "Entregue", "01/09/26 23:10", "Luiz Massahiro Kuniyoshi", "GoogleMerchant", "Pix", "Frenet (Rodonaves)", 3827.69, "VIVAD4YS"], ["56781", "Entregue", "31/08/26 17:22", "Mariana Gomes Rangel", "", "Boleto Bancário", "Frenet (Mandaê Econômico)", 632.05, "CUIDAN68S"], ["56776", "Entregue", "31/08/26 14:34", "Ed. Biazetto 1537 Residencial", "FL_google_pmax_ibramed", "Pix", "Frenet (Mandaê Econômico)", 610.95, "MOVEBNSP"], ["56772", "Entregue", "31/08/26 10:57", "JOÃO RIBEIRO DA MOTA", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 1303.93, "CUIDAN68S"], ["56771", "Cancelado", "31/08/26 09:40", "Ed. Biazetto 1537 Residencial", "FL-google-pmax-data-dupla", "Pix", "Frenet (Mandaê Econômico)", 610.95, "MOVEBNSP"], ["56749", "Entregue", "29/08/26 16:58", "Ana Paula Malafaia Dias", "GoogleMerchant", "Pix", "Frenet (Sedex)", 394.65, "DERMODJ4V"], ["56735", "Entregue", "28/08/26 15:36", "Valéria Lopes", "GoogleMerchant", "Appmax", "Frenet (Sedex)", 1262.78, "MOVEBNSP"], ["56690", "Cancelado", "26/08/26 17:24", "INTERCITY 7 DE SETEMBRO", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 488.21, "VIVAD4YS"], ["56682", "Cancelado", "26/08/26 14:10", "AGENOR FERREIRA SAMPAIO", "FL-google-pmax-data-dupla", "Appmax", "Frenet (Sedex)", 1262.78, "MOVEBNSP"], ["56671", "Cancelado", "25/08/26 20:22", "Meire de Fátima Gandolfi Gallo", "FL-google-pmax-data-dupla", "Appmax", "Frenet (Sedex)", 1252.78, "CUIDAN68S"], ["56648", "Entregue", "24/08/26 15:53", "VINICIUS STACANELLI VALE", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 473.0, "MOVEBNSP"], ["56633", "Entregue", "23/08/26 14:28", "MARTHA A M CAVALCANTE", "FL_google_pmax_ibramed", "Pix", "Motoboy", 514.49, "MOVEBNSP"], ["56598", "Entregue", "20/08/26 23:44", "Andressa Cristina Portela", "GoogleMerchant", "Pix", "Frenet (Sedex)", 503.91, "VIVAD4YS"], ["56592", "Entregue", "20/08/26 12:00", "Claudio Braz Franca", "FL_google_pmax_ibramed", "Appmax", "Frenet (Sedex)", 459.65, "CUIDAN68S"], ["56554", "Entregue", "17/08/26 16:30", "Fernanda Barroso", "GoogleMerchant", "Appmax", "Frenet (Rodonaves)", 907.38, "CUIDAN68S"], ["56551", "Entregue", "17/08/26 15:54", "SEMIRAMIS MARCOLIN", "GoogleMerchant", "Appmax", "Frenet (Mandaê Econômico)", 832.88, "VIVAD4YS"], ["56518", "Cancelado", "15/08/26 16:01", "Diana de Jesus Santos", "FL_google_pmax_profissionais_e_negocios", "Appmax", "Frenet (Jamef)", 3788.28, "CUIDAN68S"], ["56517", "Cancelado", "15/08/26 15:45", "Rita Santos", "GoogleMerchant", "Appmax", "Frenet (Jamef)", 2263.37, "VIVAD4YS"], ["56480", "Entregue", "13/08/26 17:19", "Giovana Lemos", "GoogleMerchant", "Pix", "Frenet (Rodonaves)", 1213.72, "VIVAD4YS"], ["56458", "Entregue", "12/08/26 19:12", "Janaína Stürmer Neto", "GoogleMerchant", "Pix", "Frenet (Mandaê Econômico)", 498.32, "DERMODJ4V"], ["56442", "Entregue", "11/08/26 20:31", "NOELI GARCIA FERNANDES", "GoogleMerchant", "Pix", "Frenet (Sedex)", 550.08, "MOVEBNSP"]];
+
+const fmt = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const fmtK = v => v>=1000 ? "R$ "+(v/1000).toLocaleString("pt-BR",{maximumFractionDigits:1})+" mil" : fmt(v);
+const pct = v => (v*100).toLocaleString("pt-BR",{maximumFractionDigits:0})+"%";
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => (s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/\s+/g," ").trim();
+const sum = a => a.reduce((s,d)=>s+d.v,0);
+
+function group(s){ if(["Pago","Faturado","Enviado","Entregue"].includes(s))return "ok"; if(s==="Cancelado")return "bad"; if(s.startsWith("Pgto devolvido"))return "ret"; return "wait"; }
+function origem(u){
+  if(!u) return "Sem UTM";
+  const l=u.toLowerCase();
+  if(l==="googlemerchant") return "GoogleMerchant";
+  if(l.includes("pmax")) return "Google Ads · PMax";
+  if(l.includes("shopping")) return "Google Ads · Shopping";
+  if(l.includes("pesquisa")) return "Google Ads · Pesquisa";
+  if(l.includes("carrinho")||l==="abandoned-order") return "Carrinho abandonado (e-mail)";
+  if(l==="aviseme") return "Avise-me (e-mail)";
+  return u;
+}
+const CUPOM_FLOW = {CARRINHO:"Carrinho abandonado",VOLTOUESTOQUE:"Voltou ao estoque",SEGUNDACHANCE:"Segunda chance"};
+function fluxo(d){
+  if(d.cupom && CUPOM_FLOW[d.cupom]) return CUPOM_FLOW[d.cupom];
+  const l=(d.utm||"").toLowerCase();
+  if(l.includes("carrinho")||l==="abandoned-order") return "Carrinho abandonado";
+  if(l==="aviseme") return "Voltou ao estoque";
+  return "Sem fluxo identificado";
+}
+function toRow(r,src){ const [d,m,y]=r[2].split(" ")[0].split("/"); const [hh,mi]=r[2].split(" ")[1].split(":");
+  return {id:r[0],st:r[1],g:group(r[1]),dt:r[2],day:`20${y}-${m}-${d}`,dd:`${d}/${m}`,t:new Date(2000+ +y,m-1,+d,+hh,+mi).getTime(),
+    cli:r[3],ck:norm(r[3]),utm:r[4],org:origem(r[4]),pag:r[5],env:r[6],v:r[7],cupom:r[8]||"",src}; }
+
+/* Regra de repetição (igual em todas as abas):
+   1) cancelado de um cliente que tem outro pedido não cancelado em até 72h = tentativa daquele pedido;
+   2) vários cancelados do mesmo cliente sem nenhuma compra contam uma vez (fica o mais recente). */
+function markReps(list){
+  const byC={}; list.forEach(d=>{d.rep=null;(byC[d.ck]=byC[d.ck]||[]).push(d);});
+  Object.values(byC).forEach(a=>{
+    const good=a.filter(d=>d.g!=="bad"), rest=[];
+    a.filter(d=>d.g==="bad").forEach(b=>{
+      const near=good.filter(g=>Math.abs(g.t-b.t)<=72*3600e3).sort((x,y)=>Math.abs(x.t-b.t)-Math.abs(y.t-b.t))[0];
+      if(near)b.rep=near.id; else rest.push(b);});
+    rest.sort((x,y)=>y.t-x.t); rest.slice(1).forEach(b=>b.rep=rest[0].id);
+  });
+  return list.sort((a,b)=>b.t-a.t);
+}
+const ROLETA_CUPONS={MOVEBNSP:5,VIVAD4YS:10,CUIDAN68S:15,DERMODJ4V:20};
+const premio=d=>ROLETA_CUPONS[d.cupom]||0;
+const cupomLabel=d=>ROLETA_CUPONS[d.cupom]?`${fmt(ROLETA_CUPONS[d.cupom])} · ${d.cupom}`:(d.cupom?`${d.cupom} (fora da roleta)`:"Sem cupom");
+const SRC_NAME={cupom:"Cupom Cliente DM",emails:"E-mails",roleta:"Roleta"};
+
+/* ---------- fontes que vêm de planilha ---------- */
+const DRIVE="Google Drive", DRIVE_TOOL="download_file_content";
+const SRC={
+  emails:{sheet:"1tyX-K6gT21et99Kmuc63FamFGzO4tBRUmbqL9Z6Fc5w",gid:"614206903",name:"Controle E-mails Loja Integrada — Pedidos",
+    raw:EMAIL_RAW,copy:"dados de 08/10/2026",src:"",sync:{state:"snapshot",msg:"",at:null,busy:false},watch:null},
+  roleta:{sheet:"1nb9V_VeOJJuCrY9PIK2JAIlGhXs2mOIuSFWIzDoNvIs",gid:"1439733072",name:"Controle Roleta Dellamed — Pedidos",
+    raw:ROLETA_RAW,copy:"cópia dos CSVs de 28/09",src:"",sync:{state:"snapshot",msg:"",at:null,busy:false},watch:null}
+};
+SRC.emails.src="Cópia da planilha “"+SRC.emails.name+"” feita em 08/10/2026 às 08h.";
+SRC.roleta.src="Cópia dos 4 CSVs de pedidos com os cupons da roleta (MOVEBNSP, VIVAD4YS, CUIDAN68S, DERMODJ4V), enviados em 28/09/2026.";
+
+const SETS={
+  cupom:{label:"Cupom Cliente DM",title:"Pedidos com o cupom Cliente DM",rows:markReps(CUPOM_RAW.map(r=>toRow(r,"cupom"))),
+    grp:d=>d.org,grpTitle:"Origem do pedido",grpHint:"Campanhas FL agrupadas por tipo · barra = valor, texto = aprovado / total",grpAll:"Todas as origens",
+    source:"Exportação de pedidos da Loja Integrada com o cupom Cliente DM (pedidos_pagina_1, 51 linhas)."},
+};
+function rebuild(){
+  SETS.emails={label:"E-mails transacionais",title:"Pedidos dos e-mails transacionais",rows:markReps((()=>{const ids=new Set(SRC.emails.raw.map(r=>r[0]));return SRC.emails.raw.concat(EMAIL_HIST.filter(r=>!ids.has(r[0])));})().map(r=>toRow(r,"emails"))),
+    grp:fluxo,grpTitle:"Fluxo de e-mail",grpHint:"Pelo cupom (CARRINHO, VOLTOUESTOQUE, SEGUNDACHANCE) ou, sem cupom, pela UTM do e-mail",grpAll:"Todos os fluxos",
+    source:SRC.emails.src+` Mais ${EMAIL_HIST.length} pedidos de jan a jul/2026 do CSV de carrinho abandonado enviado em 02/10.`,live:"emails"};
+  SETS.roleta={label:"Roleta Dellamed",title:"Pedidos da Roleta Dellamed",rows:markReps(SRC.roleta.raw.map(r=>toRow(r,"roleta"))),
+    grp:cupomLabel,grpTitle:"Pedidos por prêmio",grpHint:"Cupom sorteado na roleta · barra = valor do pedido, texto = aprovado / total",grpAll:"Todos os cupons",
+    source:SRC.roleta.src,live:"roleta"};
+  const m={}; ["cupom","emails","roleta"].forEach(k=>SETS[k].rows.forEach(d=>{ if(m[d.id]){ if(!m[d.id].srcs.includes(d.src))m[d.id].srcs.push(d.src); } else m[d.id]={...d,srcs:[d.src]}; }));
+  SETS.all={label:"Consolidado",title:"Pedidos consolidados · cupom, e-mails e roleta",rows:markReps(Object.values(m)),
+    grp:d=>d.srcs.length>1?"Em mais de uma base":SRC_NAME[d.srcs[0]],grpTitle:"Base de origem",grpHint:"Pedidos que aparecem em mais de uma base entram uma vez só",grpAll:"Todas as bases",
+    source:"União das três bases pelo número do pedido. Pedidos repetidos entre as bases entram uma vez, e a regra de tentativas é recalculada sobre o conjunto. "+SRC.emails.src+" "+SRC.roleta.src};
+}
+rebuild();
+
+let MCP=null, mcpTried=false;
+function parseCSV(text){
+  text=text.replace(/^﻿/,"");const out=[];let row=[],cur="",q=false;
+  for(let i=0;i<text.length;i++){const c=text[i];
+    if(q){if(c=='"'){if(text[i+1]=='"'){cur+='"';i++}else q=false}else cur+=c;}
+    else if(c=='"')q=true; else if(c==","){row.push(cur);cur="";}
+    else if(c=="\n"||c=="\r"){if(c=="\r"&&text[i+1]=="\n")i++;row.push(cur);out.push(row);row=[];cur="";}
+    else cur+=c;}
+  if(cur||row.length){row.push(cur);out.push(row);}
+  return out.filter(r=>r.some(x=>x.trim()));
+}
+function sheetToRaw(text){
+  const R=parseCSV(text);if(!R.length)return [];
+  const h=R[0].map(norm),f=fn=>h.findIndex(fn);
+  const ix={id:f(x=>x==="#"||x.startsWith("pedido")),st:f(x=>x.includes("situa")||x.includes("status")),dt:f(x=>x.startsWith("data")),
+    cl:f(x=>x.includes("cliente")),utm:f(x=>x.includes("utm")||x.includes("marketplace")),pg:f(x=>x.includes("pagamento")),
+    ev:f(x=>x.includes("envio")||x.includes("frete")),tt:f(x=>x.includes("total")),cp:f(x=>x.includes("cupom"))};
+  if(ix.id<0||ix.st<0||ix.dt<0||ix.tt<0)throw {code:"parse",message:"Não achei as colunas #, Situação, Data e Total na primeira linha da planilha."};
+  const g=(r,i)=>i<0?"":(r[i]||"").trim(),seen={};
+  return R.slice(1).map(r=>{
+    const m=g(r,ix.dt).match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})(?:\D+(\d{1,2}):(\d{2}))?/);const id=g(r,ix.id);
+    if(!id||!m||seen[id])return null;seen[id]=1;
+    let v=g(r,ix.tt).replace(/[^\d,.-]/g,"");if(v.includes(","))v=v.replace(/\./g,"").replace(",",".");
+    const p=n=>String(n).padStart(2,"0");
+    return [id,g(r,ix.st),`${p(m[1])}/${p(m[2])}/${m[3].slice(-2)} ${p(m[4]||0)}:${m[5]||"00"}`,g(r,ix.cl).replace(/\s+/g," "),g(r,ix.utm),g(r,ix.pg)||"—",g(r,ix.ev)||"—",parseFloat(v)||0,g(r,ix.cp).toUpperCase().replace(/\s+/g,"")];
+  }).filter(Boolean);
+}
+function b64utf8(s){const bin=atob(s);const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new TextDecoder("utf-8").decode(u);}
+const whenStr=at=>new Date(at).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+function refreshView(){rebuild();renderTabs();header();alertBox();render();renderSync();}
+function applyResult(key,res){
+  const S_=SRC[key];
+  const p=res&&res.payload;const txt=p&&typeof p==="object"&&typeof p.content==="string"?b64utf8(p.content):typeof p==="string"?p:null;
+  if(txt==null)throw {code:"parse",message:"O Google Drive respondeu num formato inesperado."};
+  const raw=sheetToRaw(txt),at=res.cache&&res.cache.storedAt?res.cache.storedAt:Date.now();
+  if(!raw.length){S_.sync={...S_.sync,state:"empty",at,busy:false,msg:`A planilha “${S_.name}” ainda está vazia. Mostrando a ${S_.copy} até ela ser preenchida.`};renderSync();return;}
+  S_.raw=raw;S_.src=`Planilha “${S_.name}”, lida pelo Google Drive em ${whenStr(at)} (${raw.length} linhas).`;
+  S_.sync={...S_.sync,state:"live",at,msg:"",busy:false};
+  refreshView();
+}
+function errMsg(e){
+  switch(e&&e.code){
+    case "server_not_connected":case "server_not_found":return "O Google Drive não está conectado na sua conta. Adicione em claude.ai → Configurações → Conectores e clique em Atualizar agora.";
+    case "needs_reauth":return "A conexão com o Google Drive expirou. Reconecte em claude.ai → Configurações → Conectores.";
+    case "selection_required":return "Você tem mais de uma conta do Google Drive conectada. Escolha qual usar no aviso do Claude e clique em Atualizar agora.";
+    case "not_in_manifest":case "consent_required":return "O acesso ao Google Drive não foi permitido para esta página. Clique em Atualizar agora para ser perguntado de novo.";
+    case "blocked_by_policy":case "approval_required":return "A política da sua organização bloqueia o Google Drive aqui.";
+    case "not_granted":case "capability_disabled":case "capability_removed":return "Esta visualização não consegue usar conectores. Abra a página no claude.ai.";
+    case "server_unavailable":case "rate_limited":return "O Google Drive não respondeu agora. Tente de novo em alguns segundos.";
+    case "tool_error":return "O Google Drive recusou a leitura. Confira se a planilha está compartilhada com a conta do Google Drive conectada no seu claude.ai.";
+    case "parse":return e.message;
+    default:return "Não foi possível ler a planilha. "+((e&&e.message)||"");
+  }
+}
+const RETRACT=["needs_reauth","server_not_connected","blocked_by_policy","approval_required","not_in_manifest"];
+function onError(key,e){
+  const S_=SRC[key],ret=RETRACT.includes(e&&e.code);
+  if(ret&&S_.sync.state==="live"){S_.raw=key==="emails"?EMAIL_RAW:ROLETA_RAW;S_.src=`${S_.copy[0].toUpperCase()+S_.copy.slice(1)} (o acesso ao Google Drive foi perdido).`;S_.sync.state="snapshot";refreshView();}
+  S_.sync={...S_.sync,msg:errMsg(e),busy:false};renderSync();
+}
+const inputOf=key=>({fileId:SRC[key].sheet,exportMimeType:"text/csv"});
+async function getMCP(){ if(!mcpTried){mcpTried=true;MCP=window.claude&&window.claude.use?await window.claude.use("mcp").catch(()=>null):null;} return MCP; }
+async function startWatch(key){
+  const S_=SRC[key]; if(S_.watch!==null)return; S_.watch=false;
+  const mcp=await getMCP();
+  if(!mcp){S_.sync.msg="Atualização automática indisponível aqui. Abra a página no claude.ai com o Google Drive conectado.";renderSync();return;}
+  S_.sync.busy=true;renderSync();
+  S_.watch=mcp.watchTool(DRIVE,DRIVE_TOOL,inputOf(key),ev=>{
+    if(ev.type==="data"){try{applyResult(key,ev.result);}catch(e){onError(key,e);}}
+    else onError(key,ev.error);
+  },{cache:{staleTime:60000},refetchInterval:300000});
+}
+async function refreshNow(key){
+  const S_=SRC[key];
+  if(!MCP){S_.watch=null;mcpTried=false;return startWatch(key);}
+  S_.sync.busy=true;S_.sync.msg="";renderSync();
+  const call=()=>MCP.callTool(DRIVE,DRIVE_TOOL,inputOf(key),{cache:{staleTime:0,refresh:true}});
+  try{applyResult(key,await call());}
+  catch(e){if(e&&e.retryable){await new Promise(r=>setTimeout(r,(e.retryAfterMs||1500)+Math.random()*800));
+    try{return applyResult(key,await call());}catch(e2){return onError(key,e2);}}
+    onError(key,e);}
+}
+function renderSync(){{const e=document.getElementById("sync");if(e)e.hidden=true;return;}
+  const el=document.getElementById("sync");if(!el)return;
+  const key=SETS[tab]&&SETS[tab].live; el.hidden=!key; if(!key)return;
+  const S_=SRC[key],sy=S_.sync;
+  const st=sy.busy?`<span class="pill p-wait">Lendo a planilha…</span>`:sy.state==="live"?`<span class="pill p-ok">Ao vivo · lida em ${whenStr(sy.at)}</span>`:`<span class="pill p-ret">${S_.copy[0].toUpperCase()+S_.copy.slice(1)}</span>`;
+  el.innerHTML=`<div class="syncrow">${st}<span class="synctxt">${sy.state==="live"?"Atualiza sozinha a cada 5 minutos enquanto a página estiver aberta.":"Os dados ao vivo vêm da planilha pelo Google Drive conectado no seu claude.ai."}</span>
+    <button id="btnSync" ${sy.busy?"disabled":""}>Atualizar agora</button><a href="https://docs.google.com/spreadsheets/d/${S_.sheet}/edit?gid=${S_.gid}" target="_blank" rel="noopener">Abrir planilha</a></div>${sy.msg?`<p class="syncerr">${esc(sy.msg)}</p>`:""}`;
+  document.getElementById("btnSync").addEventListener("click",()=>refreshNow(key));
+}
+
+const TABS=["cupom","emails","roleta","all"];
+let tab=(()=>{const h=location.hash.slice(1);return h==="emails"||h==="roleta"?h:h==="consolidado"?"all":"cupom";})();
+let F={st:"all",grp:"",per:"all",sit:""}, sort={k:"t",dir:-1};
+const tip=document.getElementById("tip");
+function showTip(e,h){tip.innerHTML=h;tip.hidden=false;const x=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8);tip.style.left=x+"px";tip.style.top=(e.clientY+14)+"px";}
+function hideTip(){tip.hidden=true;}
+const S=()=>SETS[tab];
+const inPer=d=>F.per==="all"||(F.per==="cupom"?(d.day>="2026-09-14"&&d.day<="2026-09-25"):d.day.slice(0,7)===F.per);
+const FLOWS=new Set();
+const grpOk=d=>tab==="emails"?(!FLOWS.size||FLOWS.has(S().grp(d))):(!F.grp||S().grp(d)===F.grp);
+function tableRows(){return S().rows.filter(d=>inPer(d)&&(F.st==="all"||(F.st==="ok"?d.g==="ok":d.g==="bad"))&&grpOk(d));}
+function rows(){return tableRows().filter(d=>!d.rep);}
+
+function renderTabs(){
+  document.getElementById("tabs").innerHTML=TABS.map(k=>{const s=SETS[k];const n=s.rows.filter(d=>!d.rep).length;
+    return `<button role="tab" id="tab-${k}" aria-selected="${k===tab}" data-t="${k}">${s.label}<small>${n}</small></button>`;}).join("");
+  document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>{tab=b.dataset.t;F.grp="";F.sit="";FLOWS.clear();
+    try{history.replaceState(null,"","#"+(tab==="all"?"consolidado":tab));}catch(e){}
+    boot();}));
+}
+const MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const mesLabel=k=>{const [y,m]=k.split("-");const n=MESES[+m-1];return n[0].toUpperCase()+n.slice(1)+"/"+y.slice(2);};
+const monthsOf=()=>[...new Set(S().rows.map(d=>d.day.slice(0,7)))].sort().reverse();
+function setPer(v){F.per=v;header();alertBox();render();}
+function renderMonths(){
+  const base=S().rows.filter(d=>(F.st==="all"||(F.st==="ok"?d.g==="ok":d.g==="bad"))&&grpOk(d)),ms=monthsOf();
+  const cnt=k=>base.filter(d=>d.day.slice(0,7)===k).length;
+  const html=`<button data-m="all" aria-pressed="${F.per==="all"}">Todos<small>${base.length}</small></button>`+
+    ms.map(k=>`<button data-m="${k}" aria-pressed="${F.per===k}">${mesLabel(k)}<small>${cnt(k)}</small></button>`).join("");
+  ["f-mes","f-mes-top"].forEach(id=>{const el=document.getElementById(id);el.innerHTML=html;
+    el.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>setPer(b.dataset.m)));});
+}
+function header(){
+  {const ms=monthsOf();if(/^\d{4}-\d{2}$/.test(F.per)&&!ms.includes(F.per))F.per="all";
+  }
+  const s=S(),days=s.rows.filter(inPer).map(d=>d.day).sort();
+  document.getElementById("h1").textContent=s.title;
+  const all=s.rows.filter(inPer),n=all.filter(d=>!d.rep).length;
+  if(days.length){const a=days[0].split("-"),b=days.at(-1).split("-");
+    document.getElementById("period").textContent=`${a[2]}/${a[1]} a ${b[2]}/${b[1]}/${b[0]} · ${n} pedidos (${all.length} linhas)`;}
+  else document.getElementById("period").textContent="Sem pedidos no período";
+  const gs=[...new Set(s.rows.map(s.grp))];
+  const sel=document.getElementById("f-grp");sel.setAttribute("aria-label",s.grpTitle);sel.hidden=tab==="emails";
+  sel.innerHTML=`<option value="">${s.grpAll}</option>`+gs.map(o=>`<option${o===F.grp?" selected":""}>${esc(o)}</option>`).join("");
+  document.getElementById("grpTitle").textContent=s.grpTitle;
+  document.getElementById("grpHint").textContent=s.grpHint;
+  document.getElementById("foot").textContent=s.source+" “Aprovado” = Pago, Faturado, Enviado ou Entregue. Tentativas repetidas: cancelado de cliente com outro pedido não cancelado em até 72h, ou vários cancelados do mesmo cliente sem nenhuma compra (conta o mais recente); ficam na tabela, mas fora dos totais.";
+  const secT=document.getElementById("g2Title"),secH=document.getElementById("g2Hint");
+  document.getElementById("g2Card").hidden=tab==="cupom";document.getElementById("pagCard").classList.toggle("wide",tab==="cupom");
+  if(tab==="cupom"){secT.textContent="";secH.textContent="";}
+  else if(tab==="emails"){secT.textContent="Origem do clique";secH.textContent="UTM do pedido aprovado · mostra quanto do fluxo veio de e-mail e quanto do Google";}
+  else if(tab==="roleta"){secT.textContent="Retorno por cupom";secH.textContent="Pedidos aprovados · faturamento e quantas vezes o valor do desconto voltou em venda";}
+  else {secT.textContent="Fluxo de e-mail no consolidado";secH.textContent="Pedidos aprovados · pedidos do cupom Cliente DM e da roleta aparecem como “Sem fluxo identificado”";}
+}
+
+function metricsOf(R){
+  const ok=R.filter(d=>d.g==="ok"),bad=R.filter(d=>d.g==="bad");
+  return {pot:sum(ok)+sum(bad),rev:sum(ok),n:ok.length,ticket:ok.length?sum(ok)/ok.length:0,apr:R.length?ok.length/R.length:0,perda:sum(bad),total:R.length,desc:ok.reduce((s,d)=>s+premio(d),0)};
+}
+function prevMonthRows(){
+  if(!/^\d{4}-\d{2}$/.test(F.per))return null;
+  const [y,m]=F.per.split("-").map(Number),pk=m===1?`${y-1}-12`:`${y}-${String(m-1).padStart(2,"0")}`;
+  const R=S().rows.filter(d=>d.day.slice(0,7)===pk&&!d.rep&&(F.st==="all"||(F.st==="ok"?d.g==="ok":d.g==="bad"))&&grpOk(d));
+  return R.length?{k:pk,R}:null;
+}
+function delta(cur,prev,{pp=false,inverse=false,label}={}){
+  if(prev==null)return "";
+  let txt,dir;
+  if(pp){const dv=(cur-prev)*100;if(Math.abs(dv)<0.5){txt="=";dir=0;}else{txt=(dv>0?"▲ ":"▼ ")+Math.abs(dv).toLocaleString("pt-BR",{maximumFractionDigits:0})+" p.p.";dir=Math.sign(dv);}}
+  else{if(!prev){if(!cur)return "";txt="novo";dir=1;}else{const dv=(cur-prev)/prev;if(Math.abs(dv)<0.005){txt="=";dir=0;}else{txt=(dv>0?"▲ ":"▼ ")+Math.abs(dv*100).toLocaleString("pt-BR",{maximumFractionDigits:0})+"%";dir=Math.sign(dv);}}}
+  const cls=dir===0?"flat":((dir>0)!==inverse?"good":"bad");
+  return `<span class="dl ${cls}" title="Comparado com ${label}">${txt} vs ${label}</span>`;
+}
+function kpis(R){
+  const ok=R.filter(d=>d.g==="ok"), bad=R.filter(d=>d.g==="bad"), wait=R.filter(d=>d.g==="wait"), ret=R.filter(d=>d.g==="ret");
+  const cli=new Set(ok.map(d=>d.ck)).size,M=metricsOf(R);
+  const pv=prevMonthRows(),P=pv?metricsOf(pv.R):null,lab=pv?MESES[+pv.k.slice(5)-1].slice(0,3):"";
+  const dd=(k,o={})=>P?delta(M[k],P[k],{label:lab,...o}):"";
+  const hero={c:"hero",l:"Faturamento aprovado",v:fmt(M.rev),d:dd("rev"),n:`${ok.length} pedidos · ${cli} clientes`};
+  const tiles=[hero,
+    {l:"Ticket médio aprovado",v:ok.length?fmt(M.ticket):"–",d:dd("ticket"),n:"Pago, faturado, enviado ou entregue"},
+    {l:"Taxa de aprovação",v:R.length?pct(M.apr):"–",d:dd("apr",{pp:true}),n:`${bad.length} cancelados de ${R.length} pedidos`},
+    {l:"Perda real",v:fmt(M.perda),d:dd("perda",{inverse:true}),n:"Cancelados sem recompra; repetições contadas uma vez"},
+    {l:"Aprovado + perda real",v:fmt(M.rev+M.perda),d:dd("pot"),n:(M.rev+M.perda)?`${pct(M.rev/(M.rev+M.perda))} desse valor virou venda`:"Soma do faturamento aprovado e da perda real"},
+    tab==="roleta"?{l:"Desconto concedido",v:fmt(M.desc),d:dd("desc",{inverse:true}),n:M.desc?`R$ ${(M.rev/M.desc).toLocaleString("pt-BR",{maximumFractionDigits:0})} faturados por R$ 1 de desconto`:"Soma dos prêmios dos pedidos aprovados"}:
+    {l:"Em aberto / devolvido",v:fmt(sum(wait)+sum(ret)),n:`${wait.length} aguardando pgto · ${ret.length} devolvidos`}
+  ];
+  document.getElementById("kpis").innerHTML=tiles.map(t=>`<div class="kpi ${t.c||""}"><div class="lab">${t.l}</div><div class="val">${t.v}</div>${t.d?`<div>${t.d}</div>`:""}<div class="note">${t.n}</div>${t.m?`<div class="marg">${t.m}</div>`:""}</div>`).join("");
+}
+
+function alertBox(){
+  const L=S().rows.filter(d=>inPer(d)&&grpOk(d)),bad=L.filter(d=>d.g==="bad"),byId={};S().rows.forEach(d=>byId[d.id]=d);
+  const G={};bad.forEach(d=>{const tgt=d.rep?byId[d.rep]:d;const closed=tgt.g!=="bad";
+    const k=d.ck+"|"+(closed?"c"+tgt.id:"l"+tgt.id);(G[k]=G[k]||{n:d.cli,c:0,v:d.v,pag:new Set(),closed,tgt}).c++;G[k].pag.add(d.pag);});
+  const all=Object.values(G),lost=all.filter(x=>!x.closed).sort((a,b)=>b.v-a.v),saved=all.filter(x=>x.closed).sort((a,b)=>b.c-a.c);
+  const el=document.getElementById("alert");
+  if(!bad.length){el.innerHTML=`<h2>Nenhum pedido cancelado no período</h2>`;return;}
+  const line=x=>{const t=x.tgt;const pill=!x.closed?`<span class="pill p-bad">Não converteu</span>`:
+      t.g==="ok"?`<span class="pill p-ok">Fechou #${t.id} (${t.st.toLowerCase()})</span>`:`<span class="pill p-wait">Novo pedido #${t.id} (${t.st.toLowerCase()}) · ${fmt(t.v)}</span>`;
+    return `<div><b>${esc(x.n)}</b><span>${x.c} ${x.c===1?"tentativa":"tentativas"} · ${fmt(x.v)} · ${[...x.pag].join(", ")}</span>${pill}</div>`;};
+  let open=false;try{open=localStorage.getItem("pedidos:alerta-aberto")==="1";}catch(e){}
+  el.innerHTML=`<details id="alertD"${open?" open":""}><summary><h2>${bad.length} linhas canceladas viram ${lost.length} ${lost.length===1?"cancelamento real":"cancelamentos reais"}${lost.length?` · ${fmt(lost.reduce((s,x)=>s+x.v,0))} de perda`:""}</h2><span class="tog" aria-hidden="true"></span></summary>
+    <p>${lost.length?`Os ${lost.length} clientes que não voltaram a comprar somam ${fmt(lost.reduce((s,x)=>s+x.v,0))}: são os que vale o televendas chamar.`:"Todos os clientes que cancelaram acabaram refazendo o pedido."} ${saved.length?`Outros ${saved.length} clientes cancelaram só como nova tentativa e refizeram o pedido logo depois.`:""}</p>
+    <div class="retry">${lost.length?`<div class="grp">Perda real</div>`+lost.map(line).join(""):""}${saved.length?`<div class="grp">Refez o pedido</div>`+saved.map(line).join(""):""}</div></details>`;
+  document.getElementById("alertD").addEventListener("toggle",e=>{try{localStorage.setItem("pedidos:alerta-aberto",e.target.open?"1":"0");}catch(err){}});
+}
+
+/* ---------- tentativas recusadas por meio de pagamento ---------- */
+function recusas(){
+  const L=S().rows.filter(d=>inPer(d)&&grpOk(d)),all=S().rows,m={};
+  L.filter(d=>d.g==="bad").forEach(d=>{const x=m[d.pag]=m[d.pag]||{n:0,cli:new Map()};x.n++;if(!x.cli.has(d.ck))x.cli.set(d.ck,d);else if(d.t<x.cli.get(d.ck).t)x.cli.set(d.ck,d);});
+  const rows=Object.entries(m).map(([pag,x])=>{let conv=0,via={},lostV=0;
+    x.cli.forEach((first,ck)=>{const later=all.filter(o=>o.ck===ck&&o.g!=="bad"&&o.t>=first.t-72*3600e3).sort((a,b)=>a.t-b.t)[0];
+      if(later){conv++;via[later.pag]=(via[later.pag]||0)+1;}else{const mx=Math.max(...L.filter(o=>o.ck===ck&&o.g==="bad"&&!o.rep).map(o=>o.v),0);lostV+=mx;}});
+    return {pag,n:x.n,cli:x.cli.size,conv,via,lostV};}).sort((a,b)=>b.n-a.n);
+  const tb=document.getElementById("recbody"),ins=document.getElementById("recins");
+  if(!rows.length){tb.innerHTML=`<tr><td colspan="6" class="hint">Nenhum cancelamento neste filtro.</td></tr>`;ins.textContent="";return;}
+  tb.innerHTML=rows.map(r=>`<tr><td>${esc(r.pag)}</td><td class="r">${r.n}</td><td class="r">${r.cli}</td><td class="r">${r.conv} de ${r.cli}</td><td>${Object.entries(r.via).map(([k,v])=>`${esc(k)} (${v})`).join(", ")||"—"}</td><td class="r">${fmt(r.lostV)}</td></tr>`).join("");
+  const tot=rows.reduce((s,r)=>s+r.n,0),top=rows[0],card=rows.filter(r=>/appmax|pagali/i.test(r.pag)),cardN=card.reduce((s,r)=>s+r.n,0);
+  const pixSave=rows.reduce((s,r)=>s+(r.pag!=="Pix"&&r.via.Pix?r.via.Pix:0),0);
+  ins.innerHTML=`<b>${esc(top.pag)}</b> concentra ${top.n} das ${tot} linhas canceladas (${pct(top.n/tot)}).${cardN&&card.length?` Os gateways de cartão (${card.map(r=>esc(r.pag)).join(" e ")}) somam ${cardN} linhas.`:""}${pixSave?` ${pixSave} ${pixSave===1?"cliente que teve o cartão recusado fechou":"clientes que tiveram o cartão recusado fecharam"} depois no Pix, o que reforça oferecer o Pix logo após a recusa.`:""}`;
+}
+
+/* ---------- baixar CSV da tabela filtrada ---------- */
+let DL=null,LAST_ROWS=[];
+async function startDownloads(){
+  DL=window.claude&&window.claude.use?await window.claude.use("downloads").catch(()=>null):null;
+  const b=document.getElementById("btnDl");b.hidden=!DL;
+  if(DL)b.addEventListener("click",baixarCSV);
+}
+async function baixarCSV(){
+  const msg=document.getElementById("dlmsg");msg.hidden=true;
+  const q=v=>{v=String(v??"");return /[;"\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  const head=["Pedido","Data","Situação","Cliente","Origem","Cupom","Pagamento","Envio","Total (R$)","Conta nos totais"];
+  const lines=[head.join(";")].concat(LAST_ROWS.map(d=>[d.id,d.dt,d.st,d.cli,d.utm,d.cupom,d.pag,d.env,d.v.toFixed(2).replace(".",","),d.rep?`Não (tentativa de #${d.rep})`:"Sim"].map(q).join(";")));
+  const nome=`pedidos-${{cupom:"cupom-cliente-dm",emails:"emails-transacionais",roleta:"roleta-dellamed",all:"consolidado"}[tab]}-${F.per==="all"?"todo-periodo":F.per}.csv`;
+  try{await DL.save({filename:nome,data:"﻿"+lines.join("\r\n")});}
+  catch(e){const c=e&&e.code;if(c==="declined")return;
+    msg.hidden=false;msg.textContent=c==="rate_limited"?"Já existe um download aguardando confirmação. Tente de novo em instantes.":"Não foi possível baixar o arquivo nesta visualização.";
+    if(["unavailable","not_granted","capability_disabled","capability_removed"].includes(c))document.getElementById("btnDl").hidden=true;}
+}
+
+function daily(R){
+  const W=560,H=230,L=46,Rp=8,T=10,B=28;
+  const days=[...new Set(S().rows.filter(inPer).map(d=>d.day))].sort();
+  if(!days.length){document.getElementById("daily").innerHTML="";return;}
+  const all=[];for(let t=new Date(days[0]+"T12:00");t<=new Date(days.at(-1)+"T12:00");t.setDate(t.getDate()+1))all.push(t.toISOString().slice(0,10));
+  const by=all.map(day=>{const x=R.filter(d=>d.day===day);return{day,dd:day.slice(8)+"/"+day.slice(5,7),ok:sum(x.filter(d=>d.g==="ok")),wait:sum(x.filter(d=>d.g==="wait"||d.g==="ret")),bad:sum(x.filter(d=>d.g==="bad")),n:x.length};});
+  const max=Math.max(1,...by.map(b=>b.ok+b.wait+b.bad));
+  const step=max>20000?10000:max>8000?2000*Math.ceil(max/20000):max>3000?2000:1000; const top=Math.ceil(max/step)*step;
+  const y=v=>T+(H-T-B)*(1-v/top), bw=(W-L-Rp)/by.length, w=Math.max(3,bw*0.62), every=Math.max(1,Math.ceil(by.length/7));
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Faturamento por dia">`;
+  for(let v=0;v<=top;v+=step){s+=`<line x1="${L}" x2="${W-Rp}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grid)"/><text x="${L-6}" y="${y(v)+3.5}" text-anchor="end">${v?(v/1000)+"k":"0"}</text>`;}
+  by.forEach((b,i)=>{const cx=L+bw*i+bw/2,x=cx-w/2;let base=0;
+    [["ok","var(--good)"],["wait","var(--warn)"],["bad","var(--bad)"]].forEach(([k,c])=>{const v=b[k];if(!v)return;const y1=y(base+v),y0=y(base);s+=`<rect x="${x}" y="${y1}" width="${w}" height="${Math.max(1,y0-y1-(base?2:0))}" rx="${w>6?2:1}" fill="${c}"/>`;base+=v;});
+    s+=`<rect class="hit" data-i="${i}" x="${L+bw*i}" y="${T}" width="${bw}" height="${H-T-B}" fill="transparent"/>`;
+    if(i%every===0)s+=`<text x="${cx}" y="${H-10}" text-anchor="middle">${b.dd}</text>`;});
+  s+=`<line x1="${L}" x2="${W-Rp}" y1="${y(0)}" y2="${y(0)}" stroke="var(--line)"/></svg>`;
+  const el=document.getElementById("daily");el.innerHTML=s;
+  el.querySelectorAll(".hit").forEach(r=>{const b=by[+r.dataset.i];
+    r.addEventListener("mousemove",e=>showTip(e,`<b>${b.dd}</b> · ${b.n} pedido${b.n===1?"":"s"}<br>Aprovado ${fmt(b.ok)}<br>Aguardando/devolvido ${fmt(b.wait)}<br>Cancelado ${fmt(b.bad)}`));
+    r.addEventListener("mouseleave",hideTip);});
+}
+
+function stackRows(elId,groups,label){
+  const el=document.getElementById(elId);
+  if(!groups.length){el.innerHTML=`<p class="hint">Nenhum pedido neste filtro.</p>`;return;}
+  const max=Math.max(1,...groups.map(g=>g.tot));
+  el.innerHTML=groups.map((g,i)=>`<div class="hrow" data-i="${i}"><div class="nm">${esc(g.k)}</div>
+    <div class="track" style="width:${Math.max(2,g.tot/max*100)}%">${g.seg.filter(s=>s.v>0).map(s=>`<span style="flex:${s.v};background:${s.c}"></span>`).join("")}</div>
+    <div class="v">${label(g)}</div></div>`).join("");
+  el.querySelectorAll(".hrow").forEach(r=>{const g=groups[+r.dataset.i];
+    r.addEventListener("mousemove",e=>showTip(e,g.tip));r.addEventListener("mouseleave",hideTip);});
+}
+function statusGroups(R,key){
+  const m={};R.forEach(d=>{const k=key(d);(m[k]=m[k]||[]).push(d);});
+  return Object.entries(m).map(([k,x])=>{const ok=x.filter(d=>d.g==="ok"),w=x.filter(d=>d.g==="wait"||d.g==="ret"),b=x.filter(d=>d.g==="bad");
+    return{k,tot:sum(x),seg:[{v:sum(ok),c:"var(--good)"},{v:sum(w),c:"var(--warn)"},{v:sum(b),c:"var(--bad)"}],okv:sum(ok),okn:ok.length,n:x.length,
+    tip:`<b>${esc(k)}</b><br>${x.length} pedidos · ${ok.length} aprovados<br>Aprovado ${fmt(sum(ok))}<br>Aguardando/devolvido ${fmt(sum(w))}<br>Cancelado ${fmt(sum(b))}`};}).sort((a,b)=>b.tot-a.tot);
+}
+function pagtoChart(R){
+  const m={};R.forEach(d=>{(m[d.pag]=m[d.pag]||[]).push(d);});
+  const g=Object.entries(m).map(([k,x])=>{const ok=x.filter(d=>d.g==="ok").length,other=x.length-ok;
+    return{k,tot:x.length,seg:[{v:ok,c:"var(--good)"},{v:other,c:"var(--bad)"}],r:ok/x.length,ok,n:x.length,
+    tip:`<b>${esc(k)}</b><br>${ok} aprovados de ${x.length}<br>Valor aprovado ${fmt(sum(x.filter(d=>d.g==="ok")))}`};}).sort((a,b)=>b.tot-a.tot);
+  stackRows("pagto",g,x=>`${pct(x.r)} · ${x.ok}/${x.n}`);
+}
+function secondChart(R){
+  const ok=R.filter(d=>d.g==="ok"),m={};
+  if(tab==="roleta"){
+    ok.forEach(d=>{const k=cupomLabel(d);(m[k]=m[k]||[]).push(d);});
+    const g=Object.entries(m).map(([k,x])=>{const rev=sum(x),desc=x.reduce((s,d)=>s+premio(d),0);return{k,ord:premio(x[0])||999,tot:rev,seg:[{v:rev,c:"var(--s1)"}],rev,desc,n:x.length,
+      tip:`<b>${esc(k)}</b><br>${x.length} pedidos aprovados<br>Faturamento ${fmt(rev)}<br>Desconto ${fmt(desc)}${desc?`<br>R$ ${(rev/desc).toLocaleString("pt-BR",{maximumFractionDigits:1})} por R$ 1 de desconto`:""}`};}).sort((a,b)=>a.ord-b.ord);
+    return stackRows("frete",g,x=>x.desc?`${fmtK(x.rev)} · ${(x.rev/x.desc).toLocaleString("pt-BR",{maximumFractionDigits:0})}x`:`${fmtK(x.rev)} · ${x.n} ped.`);
+  }
+  const key=tab==="cupom"?d=>d.env.replace(/^Frenet \((.*)\)$/,"$1"):tab==="emails"?d=>d.org:fluxo;
+  ok.forEach(d=>{const k=key(d);(m[k]=m[k]||[]).push(d);});
+  const g=Object.entries(m).map(([k,x])=>({k,tot:sum(x),seg:[{v:sum(x),c:"var(--s1)"}],n:x.length,
+    tip:`<b>${esc(k)}</b><br>${x.length} pedidos aprovados<br>${fmt(sum(x))} · ticket ${fmt(sum(x)/x.length)}`})).sort((a,b)=>b.tot-a.tot);
+  stackRows("frete",g,x=>`${fmtK(x.tot)} · ${x.n} ped.`);
+}
+const pill=d=>`<span class="pill ${{ok:"p-ok",bad:"p-bad",wait:"p-wait",ret:"p-ret"}[d.g]}">${esc(d.st)}</span>`;
+function cols(){
+  const c=[["id","#"],["t","Data"],["st","Situação"],["cli","Cliente"],["utm","Origem"]];
+  if(tab!=="cupom")c.push(["cupom","Cupom"]);
+  if(tab==="roleta")c.push(["prem","Prêmio"]);
+  if(tab==="all")c.push(["src","Base"]);
+  c.push(["pag","Pagamento"],["env","Envio"],["v","Total"]);return c;
+}
+const SIT=[["ok","Pago","Pago, faturado, enviado ou entregue"],["wait","Aguardando pagamento",""],["ret","Pagamento devolvido",""],["bad","Cancelado",""]];
+function renderSit(base){
+  const c={};base.forEach(d=>c[d.g]=(c[d.g]||0)+1);
+  const nrep=base.filter(d=>d.rep).length;
+  if(F.sit&&F.sit!=="__rep"&&!c[F.sit])F.sit="";
+  const sel=document.getElementById("f-sit");
+  sel.innerHTML=`<option value="">Todas (${base.length})</option>`+SIT.filter(([k])=>c[k]).map(([k,l,t])=>`<option value="${k}"${t?` title="${t}"`:""}>${l} (${c[k]})</option>`).join("")+
+    (nrep?`<option value="__rep">Só tentativas repetidas (${nrep})</option>`:"");
+  sel.value=F.sit;
+}
+function table(){
+  renderMonths();
+  const base=tableRows();renderSit(base);
+  const R=base.filter(d=>!F.sit||(F.sit==="__rep"?d.rep:d.g===F.sit)),C=cols();
+  document.getElementById("thead").innerHTML=C.map(([k,l])=>`<th${k==="v"?' style="text-align:right"':""}><button data-s="${k}">${l}</button></th>`).join("");
+  document.querySelectorAll("#thead button").forEach(b=>b.addEventListener("click",()=>{const s=b.dataset.s;sort.dir=sort.k===s?-sort.dir:(s==="v"||s==="t"?-1:1);sort.k=s;table();}));
+  const k=sort.k,Sr=[...R].sort((a,b)=>{const x=a[k],y=b[k];return (x>y?1:x<y?-1:0)*sort.dir;});
+  LAST_ROWS=Sr;
+  const cell={id:d=>`<td class="mono" data-l="Pedido">${d.id}</td>`,t:d=>`<td class="mono" data-l="Data">${d.dt}</td>`,
+    st:d=>`<td class="c-st">${pill(d)}${d.rep?`<div class="repnote">Tentativa de #${d.rep} · fora dos totais</div>`:""}</td>`,
+    cli:d=>`<td class="c-cli">${esc(d.cli)}</td>`,utm:d=>`<td class="utm" data-l="Origem">${esc(d.utm||"—")}</td>`,cupom:d=>`<td class="cupom" data-l="Cupom">${esc(d.cupom||"—")}</td>`,prem:d=>`<td class="num" data-l="Prêmio">${premio(d)?fmt(premio(d)):"—"}</td>`,
+    src:d=>`<td data-l="Base">${(d.srcs||[d.src]).map(s=>`<span class="src src-${s[0]}">${SRC_NAME[s]}</span>`).join(" ")}</td>`,
+    pag:d=>`<td data-l="Pagamento">${esc(d.pag)}</td>`,env:d=>`<td data-l="Envio">${esc(d.env)}</td>`,v:d=>`<td class="num c-v">${fmt(d.v)}</td>`};
+  document.getElementById("tbody").innerHTML=Sr.map(d=>`<tr${d.rep?' class="isrep"':""}>${C.map(([c])=>cell[c](d)).join("")}</tr>`).join("");
+  const n=R.filter(d=>d.rep).length;
+  document.getElementById("tblhint").textContent=`${R.length} linhas${n?` · ${n} tentativas repetidas (esmaecidas) não entram nos totais`:""} · clique no cabeçalho para ordenar`;
+}
+function renderFlowCards(){
+  const el=document.getElementById("flowcards");
+  document.getElementById("flownote").hidden=tab!=="emails";
+  if(tab!=="emails"){el.hidden=true;return;}
+  el.hidden=false;
+  const base=S().rows.filter(d=>inPer(d)&&!d.rep&&(F.st==="all"||(F.st==="ok"?d.g==="ok":d.g==="bad")));
+  const m={};base.forEach(d=>{const k=S().grp(d);(m[k]=m[k]||[]).push(d);});
+  const card=(k,label,x)=>{const ok=x.filter(d=>d.g==="ok");const on=k?FLOWS.has(k):!FLOWS.size;
+    return `<button class="fcard" data-k="${esc(k)}" aria-pressed="${on}"><span class="fname">${esc(label)}</span><span class="fval">${fmt(sum(ok))}</span><span class="fnote">${x.length} ${x.length===1?"pedido":"pedidos"} · ${ok.length} ${ok.length===1?"aprovado":"aprovados"}</span></button>`;};
+  const keys=Object.keys(m).sort((a,b)=>sum(m[b].filter(d=>d.g==="ok"))-sum(m[a].filter(d=>d.g==="ok")));
+  FLOWS.forEach(k=>{if(!m[k]){keys.push(k);m[k]=[];}});
+  /* mês com um fluxo só (jan a ago): mostra só o card dele, sem o "Todos os fluxos" repetindo o mesmo número */
+  const only=Object.keys(m).length===1&&!FLOWS.size;
+  el.innerHTML=(only?"":card("","Todos os fluxos",base))+keys.map(k=>only?card(k,k,m[k]).replace('aria-pressed="false"','aria-pressed="true" disabled'):card(k,k,m[k])).join("");
+  el.querySelectorAll(".fcard").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.k;if(!k)FLOWS.clear();else if(FLOWS.has(k))FLOWS.delete(k);else FLOWS.add(k);header();alertBox();render();}));
+}
+function render(){renderFlowCards();const R=rows();kpis(R);recusas();daily(R);stackRows("origem",statusGroups(R,S().grp),x=>`${fmtK(x.okv)} · ${x.okn}/${x.n}`);pagtoChart(R);secondChart(R);table();}
+function boot(){renderTabs();header();alertBox();render();renderSync();if(tab==="roleta"||tab==="all")startWatch("roleta");}
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{F.st=b.dataset.f;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));render();}));
+document.getElementById("f-sit").addEventListener("change",e=>{F.sit=e.target.value;table();});
+document.getElementById("f-grp").addEventListener("change",e=>{F.grp=e.target.value;render();});
+(function(){const card=document.getElementById("pedCard"),body=document.getElementById("pedBody"),t=document.getElementById("pedTog");
+  const set=open=>{body.hidden=!open;card.classList.toggle("min",!open);t.textContent=open?"Esconder ▴":"Mostrar pedidos ▾";t.setAttribute("aria-expanded",open);};
+  let open=true;try{open=localStorage.getItem("pedidos:tabela-aberta")!=="0";}catch(e){}
+  set(open);
+  t.addEventListener("click",()=>{open=body.hidden;set(open);try{localStorage.setItem("pedidos:tabela-aberta",open?"1":"0");}catch(e){}});})();
+boot();
+/* ===== Atualização automática pela planilha publicada =====
+   Cole entre as aspas o link CSV gerado no Google Sheets em
+   Arquivo → Compartilhar → Publicar na Web → (primeira aba) → Valores separados por vírgula (.csv) */
+const CSV_URL = "";
+async function loadCSV(){
+  const el=document.getElementById("asof");
+  if(!CSV_URL)return;
+  try{
+    const r=await fetch(CSV_URL+(CSV_URL.includes("?")?"&":"?")+"t="+Date.now(),{cache:"no-store"});
+    if(!r.ok)throw new Error(r.status);
+    applyResult("emails",{payload:await r.text()});
+    el.textContent="Planilha lida em "+whenStr(Date.now())+" · atualiza sozinha a cada 5 minutos";
+  }catch(e){el.textContent="Não consegui ler a planilha agora · mostrando os dados de 08/10/2026";}
+}
+loadCSV();setInterval(loadCSV,300000);
+startDownloads();
+</script>
+
+</body>
+</html>
