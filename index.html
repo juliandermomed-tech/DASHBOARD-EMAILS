@@ -764,7 +764,7 @@ boot();
 /* ===== Atualização automática pela planilha publicada =====
    Cole entre as aspas o link CSV gerado no Google Sheets em
    Arquivo → Compartilhar → Publicar na Web → (primeira aba) → Valores separados por vírgula (.csv) */
-const CSV_URL = "";
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRel68IOW9tRcLlTzcWmR9NOTKdmGvlQ3Rz_VTv_DmKGAlyUePrCadE1UqDhJ9kcReeb1pYFO6olWJ5/pub?gid=614206903&single=true&output=csv";
 async function loadCSV(){
   const el=document.getElementById("asof");
   if(!CSV_URL)return;
